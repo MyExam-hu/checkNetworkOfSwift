@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var rootViewController:UIViewController?
+    var internetReach:Reachability?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.internetReach=Reachability.init()
+        do {
+            try self.internetReach?.startNotifier()
+        } catch  {
+            return false
+        }
+        
+        
         return true
     }
 
